@@ -1,0 +1,128 @@
+[
+  {
+    "title": "Camisa Casual Algodón",
+    "description": "Camisa de algodón suave, ideal para el día a día",
+    "price": 19999,
+    "code": "CASU001",
+    "stock": 150,
+    "status": true,
+    "category": "Ropa"
+  },
+  {
+    "title": "Auriculares Inalámbricos Pro",
+    "description": "Sonido de alta fidelidad y conexión bluetooth estable",
+    "price": 29999,
+    "code": "TECH002",
+    "stock": 200,
+    "status": true,
+    "category": "Tecnología"
+  },
+  {
+    "title": "Robot Aspirador 3G",
+    "description": "Limpieza inteligente con mapeo de habitación",
+    "price": 34999,
+    "code": "HOGA003",
+    "stock": 100,
+    "status": true,
+    "category": "Hogar"
+  },
+  {
+    "title": "Set de Cuchillos Profesionales",
+    "description": "Acero inoxidable y mango ergonómico",
+    "price": 25999,
+    "code": "COCI020",
+    "stock": 85,
+    "status": true,
+    "category": "Cocina"
+  },
+  {
+    "title": "Pantalones Denim Clásicos",
+    "description": "Duraderos y cómodos, perfectos para el uso diario",
+    "price": 5496,
+    "code": "2R9ALE",
+    "stock": 17,
+    "status": true,
+    "category": "Ropa"
+  },
+  {
+    "title": "Smartwatch Deportivo",
+    "description": "Monitorea tu actividad física con estilo",
+    "price": 7950,
+    "code": "RAXMOY",
+    "stock": 69,
+    "status": true,
+    "category": "Tecnología"
+  },
+  {
+    "title": "Libro de Cocina Internacional",
+    "description": "Descubre sabores del mundo desde tu hogar",
+    "price": 4605,
+    "code": "66KZX2",
+    "stock": 79,
+    "status": true,
+    "category": "Libros"
+  },
+  {
+    "title": "Lámpara de Mesa Moderna",
+    "description": "Ilumina tu espacio con diseño y funcionalidad",
+    "price": 6114,
+    "code": "H4Z2I0",
+    "stock": 34,
+    "status": true,
+    "category": "Hogar"
+  },
+  {
+    "title": "Juego de Sartenes Antiadherentes",
+    "description": "Cocina saludable con menos aceite",
+    "price": 1343,
+    "code": "PE8GCZ",
+    "stock": 56,
+    "status": true,
+    "category": "Cocina"
+  },
+  {
+    "title": "Consola de Videojuegos 4K",
+    "description": "La mejor experiencia de juego en alta definición",
+    "price": 5600,
+    "code": "T3VDKQ",
+    "stock": 50,
+    "status": true,
+    "category": "Tecnología"
+  },
+  {
+    "title": "Set de Maquillaje Profesional",
+    "description": "Todo lo que necesitas para un look perfecto",
+    "price": 7664,
+    "code": "799MHQ",
+    "stock": 14,
+    "status": true,
+    "category": "Belleza"
+  },
+  {
+    "title": "Guitarra Acústica de Caoba",
+    "description": "Sonido cálido para músicos apasionados",
+    "price": 7751,
+    "code": "N90I29",
+    "stock": 10,
+    "status": true,
+    "category": "Música"
+  },
+  {
+    "title": "Muñeca Interactiva",
+    "description": "Horas de diversión y aprendizaje para los más pequeños",
+    "price": 8983,
+    "code": "9652ID",
+    "stock": 86,
+    "status": true,
+    "category": "Juguetes"
+  },
+  {
+    "title": "Camiseta Técnica para Running",
+    "description": "Mantente seco y cómodo mientras corres",
+    "price": 1775,
+    "code": "SRYDI5",
+    "stock": 31,
+    "status": true,
+    "category": "Deportes"
+  }
+]

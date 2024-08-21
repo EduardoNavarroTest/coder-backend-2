@@ -1,0 +1,194 @@
+h1,
+h2 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Estilo para el contenedor de productos */
+#contenedorProductos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+/* Estilo para las tarjetas de productos */
+.card {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 200px;
+    text-align: center;
+}
+
+/* Estilo para el texto dentro de las tarjetas */
+.card p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Estilo para el botón */
+.card button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo para el botón al pasar el ratón por encima */
+.card button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para el formulario */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+/* Estilo para los campos de entrada */
+form input,
+form select,
+form button {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Estilo específico para el botón */
+form button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo para el botón al pasar el ratón por encima */
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para el campo de selección */
+form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Estilo para las tarjetas de productos */
+.product-card {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 200px;
+    text-align: center;
+}
+
+/* Estilo para el texto dentro de las tarjetas */
+.product-card p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Estilo para el botón */
+.product-card button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo para el botón al pasar el ratón por encima */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination a {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #0056b3;
+}
+
+.page-info {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+}
+
+.carrito-item {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 300px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+/* Estilo para los textos dentro de los elementos del carrito */
+.carrito-item p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Estilo para el contenedor del carrito */
+#carritoContenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    background-color: #f4f4f4;
+}
