@@ -1,5 +1,6 @@
-<h1>Products List</h1>
-<div id="contenedorProductos">
+<h1>Wellcome {{email}} </h1>
+
+{{!-- <div id="contenedorProductos">
     {{#each products}}
     <div class="product-card">
         <h3>{{this.title}}</h3>
@@ -7,5 +8,10 @@
         <p>Category: <strong>{{this.category}}</strong></p>
         <p>Price: <strong>{{this.price}}</strong></p>
     </div>
-    {{/each}}
+    {{/each}} --}}
+
+    <form action="/api/sessions/logout" method="POST">
+        <button type="submit"> Logout </button>
+    </form>
+
 </div>

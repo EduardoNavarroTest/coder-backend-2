@@ -4,12 +4,17 @@ import { Server } from "socket.io";
 import cartsRouter from "./routes/carts.router.js";
 import productsRouter from "./routes/products.router.js";
 import viewsRouter from "./routes/views.router.js";
+import sessionRouter from "./routes/session.router.js"
 import ProductManager from "./dao/db/productManagerDb.js";
+import passport from "passport";
+import initializePassport from "./config/passport.config.js";
+import cookieParser from "cookie-parser";
 import "./database.js";
 
 const PORT = 8080;
 const app = express();
 const productManager = new ProductManager();
+
 //Listener
 const httpServer = app.listen(PORT, () => {
   console.log(`Escuchando en el http://localhost:${PORT}`);
@@ -20,6 +25,9 @@ const io = new Server(httpServer);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./src/public"));
+app.use(cookieParser());
+app.use(passport.initialize());
+initializePassport();
 
 //Handlebars
 app.engine("handlebars", exphbs.engine());
@@ -29,6 +37,7 @@ app.set("views", "./src/views");
 // Rutas
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
+app.use("/api/sessions", sessionRouter);
 app.use("/", viewsRouter);
 
 io.on("connection", async (socket) => {
@@ -51,3 +60,6 @@ io.on("connection", async (socket) => {
     io.sockets.emit("productos", (await productManager.getProducts()).docs);
   });
 });
+
+
+//Faltan 20 minutejos

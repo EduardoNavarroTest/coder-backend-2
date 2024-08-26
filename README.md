@@ -1,3 +1,3 @@
 # Proyecto Coderhouse Backend 2
 
-# PROFEEEEE ME ENCUENTRO PUSHEANDO, POR FAVOR DÉJEME DE ÚLTIMO ---- MUCHAS GRACIAS
+# Listo para revisión por parte de los profes
