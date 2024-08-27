@@ -57,7 +57,6 @@ router.post("/login", async (req, res) => {
     try {
         
         const usuarioEncontrado = await UsuarioModel.findOne({ email });
-        console.log(email)
         
         if (!usuarioEncontrado) {
             return res.status(401).send("Invalid user");
