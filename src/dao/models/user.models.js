@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import CartManager from "../dao/db/cartManagerDb.js";
+import CartManager from "../db/cartManagerDb.js";
 
 const cartManager = new CartManager();
 

@@ -62,4 +62,4 @@ io.on("connection", async (socket) => {
 });
 
 
-//Faltan 20 minutejos
+//Voy por el minuto 34

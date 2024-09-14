@@ -1,6 +1,7 @@
 # Proyecto Coderhouse Backend 2
 
-# Listo para revisión por parte de los profes
+# Profe aún me encuentro pushenado, le agradezco una esperita por favor....
+# Gracias
 
 # Datos para validar el Usuario admin
 admin@admin.com 
