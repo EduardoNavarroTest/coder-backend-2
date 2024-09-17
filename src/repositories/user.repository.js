@@ -11,7 +11,7 @@ class UserRepository {
     }
 
     async getUserByEmail(email) {
-        return await UserDao.findById(email);
+        return await UserDao.findOne({ email });
     }
 }
 

@@ -1,6 +1,6 @@
-<h1>Wellcome {{email}} </h1>
-
-{{!-- <div id="contenedorProductos">
+<h1>Welcome {{user.email}}</h1>
+<p>Role: <strong>{{user.rol}}</strong></p>
+    {{!-- <div id="contenedorProductos">
     {{#each products}}
     <div class="product-card">
         <h3>{{this.title}}</h3>
@@ -9,8 +9,9 @@
         <p>Price: <strong>{{this.price}}</strong></p>
     </div>
     {{/each}} --}}
+    
     <div>
         <form action="/api/sessions/logout" method="POST">
-            <button type="submit"> Logout </button>
+            <button type="submit">Logout</button>
         </form>
     </div>

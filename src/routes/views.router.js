@@ -1,12 +1,15 @@
 import { Router } from "express";
 import ProductManager from "../dao/db/productManagerDb.js"
 import CartManager from "../dao/db/cartManagerDb.js";
+import { soloAdmins, soloUsers } from "../middleware/auth.js";
+import passport from "passport";
 
 const router = Router();
 const productManager = new ProductManager();
 const cartManager = new CartManager();
 
-router.get("/realtimeproducts", async (req, res) => {
+
+router.get("/realtimeproducts", passport.authenticate("jwt", { session: false }), soloAdmins, async (req, res) => {
    res.render("realtimeproducts");
 });
 
@@ -20,7 +23,7 @@ router.get("/home", async (req, res) => {
    }
 })
 
-router.get("/products", async (req, res) => {
+router.get("/products", passport.authenticate("jwt", { session: false }), soloUsers, async (req, res) => {
    try {
       const { limit = 10, page = 1, query, sort } = req.query;
       const productos = await productManager.getProducts({
@@ -84,9 +87,9 @@ router.get("/carts/:cid", async (req, res) => {
       }
 
       const productsInCart = cart.products.map(item => ({
-         product: item.product.toObject(), 
+         product: item.product.toObject(),
          quantity: item.quantity
-       }));
+      }));
 
 
       res.render("carts", { products: productsInCart });
@@ -96,11 +99,11 @@ router.get("/carts/:cid", async (req, res) => {
    }
 });
 
-router.get("/login", (req, res)=>{
+router.get("/login", (req, res) => {
    res.render("login")
 });
 
-router.get("/register", (req, res)=>{
+router.get("/register", (req, res) => {
    res.render("register")
 });
 
