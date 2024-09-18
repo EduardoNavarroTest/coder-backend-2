@@ -1,3 +1,4 @@
+import cartRepository from "../repositories/cart.repository.js";
 import UserRepository from "../repositories/user.repository.js";
 import { createHash, isValidPassword } from "../utils/utils.js";
 
@@ -8,6 +9,12 @@ class UserServices {
         if (existUser) {
             throw new Error("User already exists");
         }
+
+
+        //Crear y asignar carrito
+        const newCart = await cartRepository.createcart();
+        
+        userData.cart = newCart._id;
 
         userData.password = createHash(userData.password);
         return await UserRepository.createUser(userData);
