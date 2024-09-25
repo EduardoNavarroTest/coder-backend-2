@@ -1,11 +1,26 @@
+// /repositories/cartRepository.js
 import CartDao from "../dao/cart.dao.js";
 
 class CartRepository {
-    async createcart() {
-        return await CartDao.create();
+    async createCart() {
+        return await CartDao.createCart();
     }
 
-    //Aca le suman despues el resto de los metodos. 
+    async getCartById(cartId) {
+        return await CartDao.findById(cartId);
+    }
+
+    async getAllCarts() {
+        return await CartDao.findAll();
+    }
+
+    async updateCart(cart) {
+        return await CartDao.updateCart(cart);
+    }
+
+    async deleteCart(cartId) {
+        return await CartDao.deleteCart(cartId);
+    }
 }
 
 export default new CartRepository();

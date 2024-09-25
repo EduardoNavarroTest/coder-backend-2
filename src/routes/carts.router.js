@@ -1,4 +1,19 @@
 import express from "express";
+import CartController from "../controllers/cart.controller.js";
+
+const router = express.Router();
+
+router.post("/", CartController.createCart);
+router.get("/", CartController.getAllCarts);
+router.get("/:cid", CartController.getCartById);
+router.post("/:cid/product/:pid", CartController.addProductToCart);
+router.delete("/:cid/product/:pid", CartController.removeProductFromCart);
+router.delete("/:cid", CartController.cleanCart);
+
+export default router;
+
+
+/*import express from "express";
 import CartManager from "../dao/db/cartManagerDb.js";
 import CartModel from "../dao/models/cart.model.js";
 import UsuarioModel from "../dao/models/user.models.js";
@@ -185,3 +200,4 @@ router.get("/:cid/purchase", async (req, res) => {
 
 
 export default router;
+*/
