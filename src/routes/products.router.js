@@ -1,10 +1,25 @@
+import { Router } from 'express';
+import productController from '../controllers/product.controller.js';
+
+const router = Router();
+
+router.get("/", productController.getProducts);
+router.get("/:pid", productController.getProductById);
+router.post("/", productController.addProduct);
+router.put("/:pid", productController.updateProduct);
+router.delete("/:pid", productController.deleteProduct);
+
+export default router;
+
+/*
+
+
 import express from "express";
 import ProductManager from "../dao/db/productManagerDb.js";
 const router = express.Router();
 
 
 const productManager = new ProductManager();
-
 
 router.get("/", async (req, res) => {
     try {
@@ -102,3 +117,4 @@ router.delete("/:pid", async (req, res) => {
 });
 
 export default router;
+*/
