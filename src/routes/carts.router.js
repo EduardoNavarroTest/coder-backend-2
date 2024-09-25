@@ -1,5 +1,10 @@
 import express from "express";
 import CartManager from "../dao/db/cartManagerDb.js";
+import CartModel from "../dao/models/cart.model.js";
+import UsuarioModel from "../dao/models/user.models.js";
+import ProductModel from "../dao/models/products.model.js";
+import TicketModel from "../dao/models/tickets.model.js";
+import { calculateTotal } from "../utils/utils.js";
 const router = express.Router();
 
 const cartManager = new CartManager();
@@ -126,5 +131,57 @@ router.delete("/:cid", async (req, res) => {
         });
     }
 });
+
+router.get("/:cid/purchase", async (req, res) => {
+    const cid = req.params.cid;
+      try {
+        const cart = await CartModel.findById(cid);
+        const arrProducts = cart.products;
+        const productsNotAvailable = [];
+
+        for (const item of arrProducts) {
+            const productId = item.product;
+            const product = await ProductModel.findById(productId);
+            if (product.stock > item.quantity) {
+                product.stock -= item.quantity;
+                await product.save();
+            } else {
+                productsNotAvailable.push(productId);
+            }
+        }
+
+        const userCart = await UsuarioModel.findOne({ cart: cid });
+        console.log(cart.products);
+        const ticket = new TicketModel({
+            purchase_datetime: new Date(),
+            amount: calculateTotal(cart.products),
+            purchaser: userCart.email,
+        })
+        await ticket.save(),
+
+            cart.products = cart.products.filter(
+                item => productsNotAvailable.some(productId => productId.equals(item.product))
+            );
+        await cart.save();
+
+        res.json({
+            message: "Purchase successfully",
+            ticket: {
+                id: ticket._id,
+                amount: ticket.amount,
+                purchaser: ticket.purchaser
+            },
+            productsNotAvailable
+        });
+
+
+    } catch (e) {
+        console.error("Error creating ticket", e);
+        res.status(500).json({
+            e: "Server Error",
+        });
+    }
+});
+
 
 export default router;

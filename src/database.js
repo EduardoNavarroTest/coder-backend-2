@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-mongoose.connect("mongodb+srv://eduardonavarrotest:coderhouse@cluster0.rmlvyfc.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0")
+dotenv.config();
+
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log("Conexión exitosa a la DB"))
     .catch((error) => console.log("Error al conectarse a la base de datos: ", error));
