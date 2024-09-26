@@ -1,11 +1,11 @@
 class ProductDto {
-    constructor({ _id, name, price, category, description, stock }) {
-        this.id = _id;
-        this.name = name;
-        this.price = price;
-        this.category = category;
-        this.description = description;
-        this.stock = stock;
+    constructor({ _id, title, description, price, stock, category }) {
+        this.id = _id;           // _id de Mongoose
+        this.title = title;      // Cambiar name por title
+        this.description = description; // Propiedad correcta
+        this.price = price;      // Propiedad correcta
+        this.stock = stock;      // Propiedad correcta
+        this.category = category; // Propiedad correcta
     }
 }
 

@@ -60,6 +60,38 @@ class CartController {
             res.status(500).json({ error: error.message });
         }
     }
+
+    async updateProductsCart(req, res) {
+        const { cid } = req.params;
+        const products = req.body.products;
+        try {
+            await CartService.updateProductsCart(cid, products);
+            res.status(200).json({ message: "Products updated successfully" });
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
+
+    async updateQuantityProductCart(req, res) {
+        const { cid, pid } = req.params;
+        const quantity = req.body.quantity || 1;
+        try {
+            await CartService.updateQuantityProductCart(cid, pid, quantity);
+            res.status(200).json({ message: "Product quantity updated successfully" });
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
+
+    async purchase(req, res) {
+        const { cid } = req.params;
+        try {
+            const result = await CartService.purchase(cid); // Ensure you create this method in CartService
+            res.status(200).json(result);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
 }
 
 export default new CartController();

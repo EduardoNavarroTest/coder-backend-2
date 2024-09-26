@@ -16,12 +16,18 @@ class CartDao {
     // Buscar un carrito por su ID
     async findById(cartId) {
         try {
-            return await CartModel.findById(cartId);
+             const cart = await CartModel.findById(cartId);
+             console.log("Carrito encontrado:", cart);
+             console.log(cart)
+             return cart;
         } catch (error) {
             console.error("Error buscando carrito por ID:", error);
             throw error;
         }
     }
+
+
+    
 
     // Obtener todos los carritos
     async findAll() {

@@ -1,29 +1,4 @@
 import { Router } from "express";
-import productController from "../controllers/product.controller.js";
-import { soloAdmins, soloUsers } from "../middleware/auth.js";
-import passport from "passport";
-
-const router = Router();
-
-// Ruta para productos en tiempo real
-router.get("/realtimeproducts", passport.authenticate("jwt", { session: false }), soloAdmins, (req, res) => {
-   res.render("realtimeproducts");
-});
-
-// Ruta para el home (listar productos)
-router.get("/home", (req, res) => productController.renderHome(req, res));
-
-// Ruta para productos con autenticación
-router.get("/products", passport.authenticate("jwt", { session: false }), soloUsers, (req, res) => productController.renderProducts(req, res));
-
-// Rutas de autenticación
-router.get("/login", (req, res) => res.render("login"));
-router.get("/register", (req, res) => res.render("register"));
-
-export default router;
-
-
-/*import { Router } from "express";
 import ProductManager from "../dao/db/productManagerDb.js"
 import CartManager from "../dao/db/cartManagerDb.js";
 import { soloAdmins, soloUsers } from "../middleware/auth.js";
@@ -134,5 +109,3 @@ router.get("/register", (req, res) => {
 
 
 export default router;
-
-*/

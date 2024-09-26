@@ -64,6 +64,7 @@ io.on("connection", async (socket) => {
 
 /*
 Pendientes:
-1. Test de lo que tengo
+Carrito completamente funcional
+Solo falta arreglar la modularización del product
 
 */

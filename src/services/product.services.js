@@ -1,12 +1,14 @@
 import productRepository from "../repositories/product.repository.js";
 import ProductDto from "../dto/product.dto.js";
 
-
 class ProductService {
     async getProducts(query) {
         const products = await productRepository.getAllProducts(query);
-        return products.docs.map(product => new ProductDto(product));
+        
+        console.log("Productos recuperados:", products);
+        return new ProductDto(products);
     }
+    
 
     async getProductById(id) {
         const product = await productRepository.getProductById(id);

@@ -2,7 +2,7 @@ import ProductModel from "./models/products.model.js";
 
 class ProductDao {
     async getProducts(query) {
-        return await ProductModel.find(query);
+        return await ProductModel.find(query).lean(); 
     }
 
     async getProductById(id) {

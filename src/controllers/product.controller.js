@@ -1,7 +1,7 @@
 import productService from "../services/product.services.js";
 
 class ProductController {
- 
+
 
     async getProducts(req, res) {
         try {
@@ -58,6 +58,7 @@ class ProductController {
             res.status(500).json({ e: "Server Error" });
         }
     }
+
 }
 
 export default new ProductController;
