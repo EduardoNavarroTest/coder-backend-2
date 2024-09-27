@@ -1,111 +1,88 @@
-// /services/cartService.js
-import CartRepository from "../repositories/cart.repository.js";
-import TicketModel from "../dao/models/tickets.model.js"
-import UsuarioModel from "../dao/models/user.models.js"
-import { calculateTotal } from "../utils/utils.js";
-import ProductRepository from "../repositories/product.repository.js";
+// services/cartService.js
+import CartDao from '../dao/cart.dao.js';
+import CartDto from '../dto/cart.dto.js';
+import ProductModel from '../dao/models/products.model.js';
+import CartModel from '../dao/models/cart.model.js';
+import UsuarioModel from '../dao/models/user.models.js';
+import TicketModel from '../dao/models/tickets.model.js';
+import { calculateTotal } from '../utils/utils.js';
 
 class CartService {
     async createCart() {
-        return await CartRepository.createCart();
-    }
-
-    async getCartById(cartId) {
-        return await CartRepository.getCartById(cartId);
+        const cart = await CartDao.createCart();
+        return new CartDto(cart);
     }
 
     async getAllCarts() {
-        return await CartRepository.getAllCarts();
+        const carts = await CartDao.findAll();
+        return carts.map(cart => new CartDto(cart));
     }
 
-    async updateCart(cart) {
-        return await CartRepository.updateCart(cart);
+    async getCartById(cartId) {
+        const cart = await CartDao.findById(cartId);
+        return cart ? new CartDto(cart) : null;
     }
 
     async addProductToCart(cartId, productId, quantity) {
-        const cart = await this.getCartById(cartId);
-        const existingProduct = cart.products.find(item => item.product.toString() === productId);
-
-        if (existingProduct) {
-            existingProduct.quantity += quantity;
-        } else {
-            cart.products.push({ product: productId, quantity });
-        }
-
-        return await this.updateCart(cart);
+        const cart = await CartDao.addProduct(cartId, productId, quantity);
+        return new CartDto(cart);
     }
 
     async removeProductFromCart(cartId, productId) {
-        const cart = await this.getCartById(cartId);
-        console.log("Carrito completo:", cart);
-        console.log("Productos antes del filtro:", cart.products);
-        console.log("ID del producto a eliminar:", productId.toString());
-    
-        cart.products = cart.products.filter(product => product.product && product.product._id && product.product._id.toString() !== productId.toString());
-    
-        console.log("Productos después del filtro:", cart.products);
-        return await this.updateCart(cart);
+        const cart = await CartDao.removeProduct(cartId, productId);
+        return new CartDto(cart);
     }
-    
-    
 
     async cleanCart(cartId) {
-        const cart = await this.getCartById(cartId);
-        cart.products = [];
-        return await this.updateCart(cart);
+        const cart = await CartDao.cleanCart(cartId);
+        return new CartDto(cart);
     }
+
+    async purchase (cid) {
+        const cart = await CartModel.findById(cid);
+        const arrProducts = cart.products;
+        const productsNotAvailable = [];
+    
+        for (const item of arrProducts) {
+            const productId = item.product;
+            const product = await ProductModel.findById(productId);
+            if (product.stock > item.quantity) {
+                product.stock -= item.quantity;
+                await product.save();
+            } else {
+                productsNotAvailable.push(productId);
+            }
+        }
+    
+        const userCart = await UsuarioModel.findOne({ cart: cid });
+        const ticket = new TicketModel({
+            purchase_datetime: new Date(),
+            amount: calculateTotal(arrProducts), // Asegúrate de definir esta función
+        });
+        await ticket.save();
+    
+        cart.products = cart.products.filter(item => 
+            productsNotAvailable.some(productId => productId.equals(item.product))
+        );
+        await cart.save();
+    
+        return {
+            ticket: {
+                id: ticket._id,
+                amount: ticket.amount               
+            },
+            productsNotAvailable
+        };
+    }
+
     async updateProductsCart(cartId, products) {
-        const cart = await this.getCartById(cartId);
-        cart.products = products; // Asumiendo que `products` es un array de objetos con `product` y `quantity`
-        return await this.updateCart(cart);
+        const cart = await CartDao.updateCartProducts(cartId, products);
+        return new CartDto(cart);
     }
 
     async updateQuantityProductCart(cartId, productId, quantity) {
-        const cart = await this.getCartById(cartId);
-        const existingProduct = cart.products.find(item => item.product._id.toString() === productId);
-
-        if (existingProduct) {
-            existingProduct.quantity = quantity;
-        } else {
-            throw new Error("El producto no existe en el carrito");
-        }
-
-        return await this.updateCart(cart);
-    }
-
-    async purchase(cartId) {
-        const cart = await this.getCartById(cartId);
-        const productsNotAvailable = [];
-
-        for (const item of cart.products) {
-            const product = await ProductRepository.getProductById(item.product);
-            if (product.stock >= item.quantity) {
-                product.stock -= item.quantity;
-                await ProductRepository.updateProduct(product); // Asegúrate de tener esta función
-            } else {
-                productsNotAvailable.push(product.id);
-            }
-        }
-
-        // Crear el ticket
-            const ticket = new TicketModel({
-            purchase_datetime: new Date(),
-            amount: calculateTotal(cart.products),
-        })
-
-        // Eliminar productos no disponibles del carrito
-        cart.products = cart.products.filter(item => !productsNotAvailable.includes(item.product));
-        await this.updateCart(cart);
-
-        return {
-            message: "Compra realizada con éxito",
-            ticket: {
-                id: ticket._id,
-                amount: ticket.amount,
-                purchaser: ticket.purchaser,
-            },
-            productsNotAvailable,
-        };
+        const cart = await CartDao.updateProductQuantity(cartId, productId, quantity);
+        return new CartDto(cart);
     }
 }
 

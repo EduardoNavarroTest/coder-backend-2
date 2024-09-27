@@ -1,8 +1,12 @@
-class CartDTO {
-    constructor({ id, products }) {
-        this.id = id;
-        this.products = products;
+
+class CartDto {
+    constructor({ _id, products }) {
+        this.id = _id;
+        this.products = products.map(product => ({
+            productId: product.product._id,
+            quantity: product.quantity
+        }));
     }
 }
 
-export default CartDTO;
+export default CartDto

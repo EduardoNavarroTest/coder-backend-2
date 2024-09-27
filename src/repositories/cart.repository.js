@@ -1,25 +1,37 @@
-// /repositories/cartRepository.js
-import CartDao from "../dao/cart.dao.js";
+// repository/cartRepository.js
+import CartDao from '../dao/cart.dao.js';
 
 class CartRepository {
     async createCart() {
         return await CartDao.createCart();
     }
 
-    async getCartById(cartId) {
+    async findById(cartId) {
         return await CartDao.findById(cartId);
     }
 
-    async getAllCarts() {
+    async findAll() {
         return await CartDao.findAll();
     }
 
-    async updateCart(cart) {
-        return await CartDao.updateCart(cart);
+    async addProduct(cartId, productId, quantity) {
+        return await CartDao.addProduct(cartId, productId, quantity);
     }
 
-    async deleteCart(cartId) {
-        return await CartDao.deleteCart(cartId);
+    async removeProduct(cartId, productId) {
+        return await CartDao.removeProduct(cartId, productId);
+    }
+
+    async cleanCart(cartId) {
+        return await CartDao.cleanCart(cartId);
+    }
+
+    async updateCartProducts(cartId, products) {
+        return await CartDao.updateCartProducts(cartId, products);
+    }
+
+    async updateProductQuantity(cartId, productId, quantity) {
+        return await CartDao.updateProductQuantity(cartId, productId, quantity);
     }
 }
 
