@@ -12,6 +12,7 @@ class ProductController {
                 sort,
                 query,
             });
+            console.log(products)
             res.json({ status: 'success', payload: products });
         } catch (e) {
             console.error("Error recovering products", e);

@@ -3,13 +3,10 @@ import ProductDto from "../dto/product.dto.js";
 
 class ProductService {
     async getProducts(query) {
-        const products = await productRepository.getAllProducts(query);
-        
-        console.log("Productos recuperados:", products);
-        return new ProductDto(products);
+        const result = await productRepository.getAllProducts(query);
+        return result;
     }
-    
-
+   
     async getProductById(id) {
         const product = await productRepository.getProductById(id);
         return new ProductDto(product);

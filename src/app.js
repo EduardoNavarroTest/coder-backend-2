@@ -60,11 +60,3 @@ io.on("connection", async (socket) => {
     io.sockets.emit("productos", (await productManager.getProducts()).docs);
   });
 });
-
-
-/*
-Pendientes:
-Carrito completamente funcional
-Solo falta arreglar la modularización del product
-
-*/
