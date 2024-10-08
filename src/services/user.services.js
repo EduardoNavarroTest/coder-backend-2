@@ -12,7 +12,7 @@ class UserServices {
 
 
         //Crear y asignar carrito
-        const newCart = await cartRepository.createcart();
+        const newCart = await cartRepository.createCart();
         
         userData.cart = newCart._id;
 
